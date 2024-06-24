@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<!-- 
+    
+    KhanCrypt
+    Zoomy Group's entry
+    All code by LeaferStudios
+    
+    Started 2022-01-21 || Completed 2022-01-23
+    Programmed in 5-6 hours.
+    
+-->
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link href="https://fonts.googleapis.com/css?family=Material+Icons|Google+Sans+Display:500,400|Roboto:700,500,400" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+	<title>KhanCrypt 1.0.0</title>
+	<style>
+		html,
+		body {
+			background-color: #f5f5f5;
+			height: 100%;
+		}
+
+		@keyframes grow {
+			0% {
+				opacity: 0;
+				transform: scale(0, 1) translate(-50%, -50%);
+			}
+
+			50% {
+				transform: scale(1.1, 1) translate(-50%, -50%);
+			}
+
+			100% {
+				transform: scale(1, 1) translate(-50%, -50%);
+			}
+		}
+
+		@keyframes fade-in {
+			from {
+				opacity: 0;
+			}
+
+			to {
+				opacity: 1;
+			}
+		}
+
+		#logo {
+			background: radial-gradient(rgb(33, 32, 32), rgb(9, 11, 13), rgb(0, 0, 0), rgb(0, 0, 0), rgb(0, 0, 0), rgb(48, 48, 48));
+			background-repeat: no-repeat;
+			background-size: cover;
+			height: 100%;
+			width: 100%;
+			position: fixed;
+			left: 0;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			background-attachment: fixed;
+			overflow: hidden;
+			z-index: 9999;
+		}
+
+		#logo h1 {
+			text-shadow: 0 0px 50px rgb(255, 255, 255);
+			color: rgb(0, 140, 255);
+			font-family: 'Google Sans Display', arial, sans-serif;
+			transform: scale(0) translate(-50%, -50%);
+			letter-spacing: 17px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			margin-top: -25px;
+			animation: 1s grow forwards;
+			animation-delay: 0.5s;
+		}
+
+		#logo p {
+			margin-left: 10px;
+			padding-top: 15px;
+			letter-spacing: 51px;
+			font-size: 14px;
+			font-family: 'Google Sans Display', arial, sans-serif;
+			text-shadow: 0px 0px 50px;
+			color: white;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: scale(0) translate(-50%, -50%);
+			margin-top: 25px;
+
+			animation: 1s grow forwards;
+			animation-delay: 1s;
+
+		}
+
+		nav.navbar {
+			background-color: #FFF;
+			color: #212121;
+			height: 56px;
+			position: fixed;
+			top: 0;
+			left: 0;
+			right: 0;
+			z-index: 1111;
+			opacity: 0.98;
+			display: flex;
+			justify-content: space-between;
+		}
+
+		nav.navbar a {
+			padding: 0 22px;
+			height: 56px;
+			color: rgb(12, 93, 120);
+			font-weight: 500;
+			font-size: 17px;
+			font-family: "Roboto", arial;
+			margin-left: -0px;
+			margin-right: -0px;
+		}
+
+		.jumbotron {
+			background-color: #FBF7F0;
+			padding: 95px 45px;
+			text-align: center;
+		}
+
+		.jumbotron h1 {
+			font-family: "Roboto", arial;
+			font-weight: 700;
+			font-size: 45px;
+		}
+
+		h2,
+		h3,
+		h4,
+		h5,
+		h6 {
+			font-family: "Roboto", arial;
+			font-weight: 500;
+		}
+
+		.btn {
+			background-color: #FFE000;
+			color: #1d2d35;
+			font-family: "Roboto", arial !important;
+			letter-spacing: 0px;
+			text-transform: none;
+
+			font-weight: 700 !important;
+			border-radius: 0px;
+			box-shadow: none;
+			height: 45px;
+			line-height: 45px;
+			padding: 0 50px;
+			font-size: 17px;
+			border: 2px solid #FFE000;
+			transition: all 0.25s;
+		}
+
+		.btn:hover {
+			background-color: #1d2d35;
+			border: 2px solid #1d2d35;
+			color: #FFE000;
+			box-shadow: none;
+		}
+
+		.btn:focus {
+			background-color: #1d2d35;
+			color: #FFE000;
+			border: 2px solid #1d2d35;
+		}
+
+		.btn.btn-outline {
+			border: 2px solid #1d2d35;
+			color: #1d2d35;
+			background-color: transparent;
+		}
+
+		.btn.btn-outline:hover {
+			background-color: #1d2d35;
+			color: #FFE000;
+		}
+
+		.btn.btn-outline:focus {
+			background-color: #1d2d35;
+			color: #FFE000;
+		}
+
+		p {
+			font-family: "Roboto", arial;
+			line-height: 24px;
+			font-size: 16px;
+			font-weight: 400;
+		}
+
+		p b {
+			font-weight: 700;
+		}
+
+		button {
+			background-color: #f5f5f5;
+			font-family: "Roboto", arial;
+			border: none;
+			height: 36px;
+			padding: 0 16px;
+		}
+
+		button a {
+			font-family: "Roboto", arial;
+			font-weight: 500;
+			color: #212121 !important;
+		}
+
+		.textShadow {
+			text-shadow: 0px 6px 28px rgba(245, 227, 137, 0.4);
+		}
+
+		.carousel {
+			height: 125px;
+			margin: 0 calc(25% / 2);
+			width: 75%;
+		}
+
+		.carousel .carousel-item {
+			background-color: white;
+			height: 60px;
+			margin: 0 45px;
+			box-shadow: 0px 4px 4px black;
+			text-align: center;
+			line-height: 60px;
+		}
+
+		.carousel .carousel-item img {
+			width: 140px;
+		}
+
+		.promos {
+			background-color: #212121;
+		}
+
+		.promos .col {
+			text-align: center;
+			padding-top: 55px;
+			padding-bottom: 55px;
+			color: #FFF;
+		}
+
+		.promos .col i {
+			color: #F8E000;
+			font-size: 50px;
+			text-shadow: 0px 6px 28px rgba(245, 227, 137, 0.4);
+		}
+
+		.promos .col h2 {
+			text-shadow: 0px 6px 28px rgba(245, 227, 137, 0.4);
+		}
+
+		.promos p {
+			text-shadow: 0px 6px 28px rgba(245, 227, 137, 0.4);
+
+		}
+	</style>
+</head>
+
+<body>
+	<nav class="navbar z-depth-0 no-select">
+		<a href="#" data-activates="slide-out" class="button-collapse btn-flat waves-effect waves-light" id='nav-menu-btn'><i class="material-icons">menu</i></a>
+		<a href="javascript:window.scroll(0,0);" style="padding-left:-0px"><i class="material-icons" style="float:left;margin-right:10px;">enhanced_encryption</i><span>KhanCrypt</span></a>
+		<a class='dropdown-button waves-effect waves-light btn-flat' href='#' data-activates='dropdown1'><i class="material-icons">more_vert</i></a>
+
+		<!--<ul id='dropdown1' class='dropdown-content' style="margin-top:56px;">
+            <li><a href="https://www.khanacademy.org/computer-programming/leaferstudios/4934504502870016" target="_blank" class="">
+                    Subscribe to LeaferStudios
+                </a></li>
+            <li><a href="https://www.khanacademy.org/computer-programming/elizabeths-submarine/4912151465508864" target="_blank">
+                    Subscribe to Promise
+                </a></li>
+        </ul>-->
+	</nav>
+
+	<ul id="slide-out" class="side-nav" style="z-index:1112;">
+		<li><a class='waves-effect yellow darken-4 z-depth-0' onclick="$('.button-collapse').sideNav('hide');" style='font-size: 20px; color: white; height: 55px; line-height: 55px; text-align: center'>Sidenav</a></li>
+		<li><a class="waves-effect" href="javascript: switchPage(1);">Home</a></li>
+		<li><a class="waves-effect" href="javascript: switchPage(2);">About</a></li>
+		<li><a class="waves-effect" href="javascript: switchPage(3);">Start</a></li>
+		<li><a class="waves-effect" href="javascript: switchPage(4);">Guide</a></li>
+		<li><a class="waves-effect" href="javascript: switchPage(5);">More</a></li>
+	</ul>
+
+	<div id="logo" class="scene">
+		<h1>ZOOMY</h1>
+		<p>GROUP</p>
+	</div>
+	<div class="scene">
+		<div class="jumbotron">
+			<h1>Welcome to KhanCrypt</h1>
+			<p style="margin: 0px 30px 25px;">Zoomy Group's entry to Clash Of Code 2022 Round No.2, a collaboration between LeaferStudios and Promise.</p>
+			<a href="javascript:switchPage(3);" class="waves-effect waves-light btn" style="margin-right:px">Get Started</a><br /><br>
+			<a class="waves-effect waves-light btn btn-outline modal-trigger" href="#modal1">View Zoomy</a>
+		</div>
+
+		<div class="container" style="padding:65px 0;background-color:#212121;margin-right:0;margin-left:0;width:100%;color:#FFF;box-shadow: 0px 0px 300px inset rgba(255, 255, 255, 0.3);">
+			<h3 class="center textShadow">AES Trusted by:</h3>
+			<div class="carousel">
+				<a class="carousel-item" href="#one!"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png" style="margin-top:7px;">
+				</a>
+				<a class="carousel-item" href="#three!"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Facebook-reversed.svg/800px-Facebook-reversed.svg.png" style="margin-top:13px;">
+					<a class="carousel-item" href="#two!"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Apple_logo_grey.svg/440px-Apple_logo_grey.svg.png" style="width:40px !important;margin-top:5px">
+					</a>
+
+				</a>
+				<a class="carousel-item" href="#four!"><img src="https://upload.wikimedia.org/wikipedia/id/thumb/c/c4/Snapchat_logo.svg/200px-Snapchat_logo.svg.png" style="width:50px !important;margin-top:5px;">
+				</a>
+				<a class="carousel-item" href="#five!"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/LastPass_logo.svg/360px-LastPass_logo.svg.png"></a>
+				<a class="carousel-item" href="#six!"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/WhatsApp_logo.svg/300px-WhatsApp_logo.svg.png" style="margin-top:9px;"></a>
+			</div>
+		</div>
+
+
+		<div class="row" style="padding:45px 0;">
+			<div class="col s6">
+				<i class="material-icons" style="font-size:200px;color:#F8E000;text-shadow:0px 3px 2px rgba(69, 69, 69, 0.4);">
+					code
+				</i>
+			</div>
+			<div class="col s6">
+				<h4>Countless applications.</h4>
+
+				<p>KhanCrypt has many potential uses whether you are a programmer or not.</p>
+			</div>
+		</div>
+
+		<div class="row promos">
+
+			<div class="col s4">
+				<i class="material-icons">bolt</i>
+
+				<h2>Fast</h2>
+				<p>Your encrypted/decrypted message is one click of a button away.</p>
+			</div>
+			<div class="col s4">
+				<i class="material-icons">lock</i>
+
+				<h2>Safe</h2>
+				<p>Your messages are safe unless you have a weak passphrase.</p>
+			</div>
+			<div class="col s4">
+				<i class="material-icons">thumb_up</i>
+
+				<h2>Reliable</h2>
+				<p>KhanCrypt uses the AES cipher algorithm.</p>
+			</div>
+
+		</div>
+
+		<div class="container center" style="padding:65px 0;">
+			<h1 class="center" style="font-size:35px;">Get started in seconds</h1>
+
+			<a href="javascript:switchPage(3);" class="waves-effect waves-light btn">Start Now</a><br /><br>
+		</div>
+	</div>
+
+	<div class="scene">
+		<div class="jumbotron" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/0/04/Cybersecurity_Visuals_Challenge_2019_-_John_Hurley.png');background-size:100%;background-position:top;box-shadow:-400px -400px 50px rgba(0, 0, 0, 0.5) inset;color:#FFF;background-attachment:fixed;">
+			<h1 style="padding-top:65px;">About KhanCrypt</h1>
+		</div>
+
+		<div class="container" style="padding: 25px 0;">
+			<p>KhanCrypt is an entry to Clash Of Code 2022 Round No. 2 by LeaferStudios and Promise.<br /><br />Version: 1.0.0<br />Next version may or may not be released.</p>
+		</div>
+	</div>
+
+	<div class="scene">
+		<div class="jumbotron">
+			<h1>KhanCrypt PRIME</h1>
+
+			<p>Need help? Visit the <a href="javascript:switchPage(4);">guide</a> page for more information.</p>
+
+
+			<div class="row">
+				<form class="col s12">
+					<div class="row">
+						<div class="input-field col s12">
+							<textarea id="input" class="materialize-textarea" style="background-color:rgb(218, 220, 222);border-top-left-radius:5px;border-top-right-radius:5px;padding:15px 15px;"></textarea>
+							<label for="input" style="padding-left:5px;">Message</label>
+						</div>
+						<div class="input-field col s12">
+							<input id="input-key" type="text" class="validate" style="background-color:rgb(218, 220, 222);border-top-left-radius:5px;border-top-right-radius:5px;padding:15px 15px;">
+							<label for="input-key" style="padding-left:5px;">Secret Passphrase</label>
+						</div>
+					</div>
+
+				</form>
+
+			</div>
+
+
+
+			<button class="btn" onclick="encrypt();">Encrypt</button>
+			<button onclick="decrypt();" class="btn btn-outline" style="margin-left:7px;">Decrypt</button>
+			<br />
+			<br />
+			<div id="result">Encryption/decryption results will appear here.</div>
+			<br />
+			<br />
+			<br />
+		</div>
+	</div>
+
+	<div class="scene">
+		<div class="jumbotron" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/d/d3/Frosty_Mountain.jpg');background-size:150%;background-position:top;box-shadow:-400px -400px 50px rgba(0, 0, 0, 0.5) inset;color:#FFF;background-attachment:fixed;">
+			<h1 style="padding-top:65px;text-align:left;">Guide to KhanCrypt</h1>
+		</div>
+
+		<div class="container" style="padding: 25px 0;">
+			<p><b>To encrypt:</b> Type your message into the message textbox and create a secret passphrase. Click encrypt to get the encrypted message.</p>
+
+			<p><b>To decrypt:</b> Copy/paste your encrypted message into the message textbox and enter your secret passphrase. Click decrypt to get the decrypted message.</p>
+
+			<p>This progam uses the Advanced Encryption Standard (AES) cipher algorithm through <a href="https://cryptojs.gitbook.io/docs/" target="_blank">CryptoJS</a>. AES is a symmetric-key algorithm which has been adopted by the U.S. government in 2001. Since then, AES protects everything from bank transactions to classified information. For more general information about AES, visit the <a href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard" target="_blank">Wikipedia</a> page.<br /><br />Disclaimer: KhanCrypt is not responsible for consumer losses.</p>
+		</div>
+	</div>
+
+	<div class="scene">
+		<div class="container" style="padding: 120px 0;">
+			<h2>More</h2>
+
+			<img src="https://cdn.kastatic.org/third_party/javascript-khansrc/live-editor/build/images/seasonal/fireworks-in-sky.png" width="250" class="materialboxed" style="margin:25px 0;">
+
+			<p>This webpage would not have been possible without the amazing support of Zoomy Group.</p>
+
+			<p>I would like to thank everybody who supported me when I started programming. Without them, I would have not had the motivation to complete a single program. -LeaferStudios</p>
+
+			<p>Thank you to everyone who has supported me thus far. I'm glad to be a part of Zoomy Group. I have always enjoyed secret codes. Have fun! — Promise</p>
+		</div>
+	</div>
+
+	<div id="modal1" class="modal">
+		<div class="modal-content">
+			<h4>About Zoomy Group</h4>
+			<p>Zoomy Group is a group of amazing programmers that will be participating in the Clash of Code 2022 Contest. Team includes Kevin W, Levi F, LeaferStudios, Maverick, Elizabeth, Samwise, Lunar Wolfie, BirdySparrowCatcher.</p>
+		</div>
+		<div class="modal-footer">
+			<a href="#!" class="modal-close waves-effect waves-dark btn-flat" style="text-transform: none;font-weight:500;">Yessir, great team!</a>
+		</div>
+	</div>
+
+
+	<a id="menu" class="waves-effect waves-light btn-floating blue darken-4" style="position:fixed;bottom:30px;right:30px;" onclick="$('.tap-target').tapTarget('open');"><i class="material-icons">notifications</i></a>
+
+	<div class="tap-target yellow no-select" data-activates="menu">
+		<div class="tap-target-content">
+			<div style="padding-left:45px;padding-top:25px;">
+				<h5>Get notified.</h5>
+				<br />
+				<button class="waves-effect"><a href="https://www.khanacademy.org/computer-programming/leaferstudios/4934504502870016" target="_blank">Subscribe to LeaferStudios</a></button>
+				<br /><br />
+				<button class="waves-effect"><a href="https://www.khanacademy.org/computer-programming/elizabeths-submarine/4912151465508864" target="_blank">Subscribe to Promise</a></button>
+			</div>
+		</div>
+	</div>
+
+	<footer class="page-footer grey darken-4">
+		<div class="container">
+			<div class="row">
+				<div class="col l6 s10">
+					<h5 class="white-text">Encryption made simple.</h5>
+					<p class="grey-text text-lighten-4">Collaboration by LeaferStudios and Promise.</p>
+				</div>
+				<div class="col l4 offset-l2 s2">
+					<ul>
+						<li><a class="grey-text text-lighten-3" href="javascript:switchPage(1);">Home</a></li>
+						<li><a class="grey-text text-lighten-3" href="javascript:switchPage(2);">About</a></li>
+						<li><a class="grey-text text-lighten-3" href="javascript:switchPage(3);">Start</a></li>
+						<li><a class="grey-text text-lighten-3" href="javascript:switchPage(4);">Guide</a></li>
+						<li><a class="grey-text text-lighten-3" href="javascript:switchPage(5);">More</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="footer-copyright black">
+			<div class="container">
+				© 2022 Zoomy Group
+				<a class="grey-text text-lighten-4 right" href="https://www.khanacademy.org/computer-programming/i/5648290408349696" target="_blank">Clash Of Code Homepage</a>
+			</div>
+		</div>
+	</footer>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js" integrity="sha512-nOQuvD9nKirvxDdvQ9OMqe2dgapbPB7vYAMrzJihw5m+aNcf0dX53m6YxM4LgA9u8e9eg9QX+/+mPu8kCNpV2A==" crossorigin="anonymous"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+	<!-- Main JS -->
+	<script type="application/javascript">
+		// encryption functions
+
+		// Encrypts string (i, k)
+		var encryptString = function(i, k) {
+			return CryptoJS.AES.encrypt(i, k);
+		};
+
+
+		// Decrypts string (ie, k)
+		var decryptString = function(ie, k) {
+			return CryptoJS.AES.decrypt(ie, k);
+		};
+
+		/**
+		    message.encrypt
+		**/
+		function encrypt() {
+			var _input = document.getElementById("input").value;
+			var _key = document.getElementById("input-key").value;
+			result.innerHTML = "Encrypted <span style='color: #616161;'>" + _input + "</span> [passphrase: " + _key + "]. Encrypted Message: <code>" + encryptString(_input, _key) + "</code><br><br><br>";
+		};
+
+		/**
+		    message.decrypt
+		**/
+		function decrypt() {
+			var _input = document.getElementById("input").value;
+			var _key = document.getElementById("input-key").value;
+			var tt = decryptString(_input, _key);
+			result.innerHTML = "Decrypted Message, result: <span style='color: #616161;'>" + tt.toString(CryptoJS.enc.Utf8) + "</span>";
+		};
+
+		var intro = true;
+
+		/** Scene manager **/
+		var scenes = document.getElementsByClassName("scene");
+		var switchPage = function(index) {
+			for (var scene = 0; scene < scenes.length; scene++) {
+				scenes[scene].style.display = "none";
+			}
+			window.scroll(0, 0);
+			scenes[index].style.animation = "0.75s forwards fade-in";
+			scenes[index].style.display = "block";
+		};
+		switchPage(0);
+
+		if (intro === true) {
+			document.getElementsByTagName("nav")[0].style.opacity = "0";
+			document.getElementsByTagName("footer")[0].style.opacity = "0";
+			setTimeout(function() {
+				intro = false;
+				document.getElementsByTagName("nav")[0].style.opacity = "1";
+				document.getElementsByTagName("footer")[0].style.opacity = "1";
+				switchPage(1);
+			}, 3000);
+		} else {
+			switchPage(0);
+		}
+
+		/**
+		 * Image for Thumbnail by LeaferStudios
+		 **/
+		document.body.addEventListener("keydown", function(e) {
+			if (e.code === "Escape") {
+				document.body.innerHTML = `
+                          <div class='center' style='overflow:hidden;height:600px;width:100%;background-image:url("https://upload.wikimedia.org/wikipedia/commons/9/9b/The.Matrix.glmatrix.2.png");background-size:40%;background-position:bottom;text-align:center;'>
+                          <div style='background-color:rgba(0, 0, 0, 0.5);position:absolute;top:0;bottom:0;left:0;bottom:0;width:100%;z-index:0;'></div>
+                          <div style="z-index:999;">
+                              <h1 style="position:absolute;top:-16px;left:50%;transform:translateX(-50%);padding-top:73px;font-size:105px;margin-bottom:304px;letter-spacing:2px;color:rgb(87, 143, 240);font-family:'Google Sans',arial;z-index:99;">KhanCrypt</h1>
+                              <img style="position:absolute;top:271px;left:50%;transform:translateX(-50%);width: 250px;margin-bottom:-235px;" src="https://upload.wikimedia.org/wikipedia/commons/c/c4/System-lock-screen.svg">
+                              <p style="position: absolute;top:0px;left:50%;transform:translateX(-50%);height:0px;color:rgb(179, 179, 179);letter-spacing:2px;font-size:36px;">v1.0.0</p>
+  <p style="position: absolute;bottom:25px;left:50%;transform:translateX(-50%);height:0px;color:rgb(186, 159, 23);font-family:'Google Sans Text',arial;letter-spacing:4px;font-size:30px;font-weight:500;">115+ Votes!!!</p>
+                              <p style="position: absolute;top:181px;left:50%;transform:translateX(-50%);width:600px;color:rgb(255, 255, 255);letter-spacing:2px;font-size:30px;font-family:'Google Sans Display';">&ldquo;The Digital Encryption Tool&rdquo;</p>
+                              </div>
+                          </div>
+                      `;
+
+			}
+
+			if (e.code === "Enter") {
+				e.preventDefault();
+			}
+		});
+	</script>
+
+	<!-- Components init. -->
+	<script>
+		// jQuery / MaterializeJS stuff
+		$('.dropdown-button').dropdown({
+			inDuration: 300,
+			outDuration: 225,
+			constrainWidth: false,
+			hover: false,
+			gutter: 0,
+			belowOrigin: !false,
+			alignment: 'left',
+			stopPropagation: false
+		});
+
+		$(".button-collapse").sideNav();
+		$('.button-collapse').sideNav({
+			menuWidth: 250,
+			edge: 'left',
+			closeOnClick: true,
+			draggable: true
+		});
+
+		$('.modal').modal();
+
+		$('.carousel').carousel();
+	</script>
+
+	<!-- The Thumbnail Script 2.0.0 10/24/2023 by Bluebird@kaid_157624541333313939750668 -->
+	<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+	<script type>
+		var r = 600;
+		var s = document.documentElement.clientWidth;
+		window.parent.html2canvas = e => {
+			try {
+				html2canvas(document.body, {
+					width: s,
+					height: s,
+					useCORS: true,
+				}).then(e => {
+					var c = document.createElement("canvas");
+					c.width = r;
+					c.height = r;
+					c.getContext('2d').drawImage(e, 0, 0, e.width, e.height, 0, 0, r, r);
+					window.top.postMessage(c.toDataURL(), "*");
+				}).catch(e => {
+					alert("Thumbnail Script Error: " + e);
+				});
+			} catch {
+				window.top.postMessage(document.createElement("canvas").toDataURL(), "*");
+			}
+		};
+	</script>
+</body>
+
+</html>
